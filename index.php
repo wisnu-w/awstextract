@@ -24,6 +24,12 @@
                 eraseText();
            })
         });
+        function prettyPrint() {
+          var badJSON = document.getElementById('resultTA').value;
+          var parseJSON = JSON.parse(badJSON);
+          var JSONInPrettyFormat = JSON.stringify(parseJSON, undefined, 4);
+          document.getElementById('resultTA').innerHTML = JSONInPrettyFormat;
+        }
     </script>
 </head>
 
@@ -75,7 +81,8 @@
                         <h4 class="card-title" style="text-align: center;">Result</h4>
                         <div id="response"></div>
                         <p class="card-text" style="text-align: center;">Your result will be seen here</p>
-                        <textarea class="form-control-lg d-flex mx-auto" style="text-align: center;" readonly="" id="resultTA"></textarea>
+                        <button onclick="prettyPrint()">Pretty Print</button>
+                        <textarea cols=40 rows=5 class="form-control-lg d-flex mx-auto" style="text-align: center;" readonly="" id="resultTA"></textarea>
                     </div>
                 </div>
             </div>
@@ -155,7 +162,7 @@ if(isset($_POST['Submit'])!= NULL)
             curl_close($ch);
           }
         }
-        echo "<script>addData('$hasil');</script>"; 
+        echo "<script>addData('$result');</script>"; 
             
       }
     }
